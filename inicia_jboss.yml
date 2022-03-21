@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+          - name: Inicia Jboss
+            service: name=jboss-eap-rhel.service state=started
+          - name: Copiar
+            shell: cp /home/dherranz/playbooks/*.yml /root/playbooks
+

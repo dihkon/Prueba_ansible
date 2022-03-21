@@ -1,0 +1,11 @@
+---
+ - name: Playbook para la clase de register
+   hosts: localhost
+   tasks:
+           - name: Ejecutar comando uptime
+             command: free -m
+             register: salida_free
+
+           - name: Visualizar variable
+             debug: var=salida_free.stdout_lines
+

@@ -1,0 +1,15 @@
+---
+- name: Comprueba y muestra info si es un dorectorio
+  hosts: localhost
+  become: True
+  tasks:
+          - name: es_directorio
+            stat: path=/home/dherranz/playbooks
+            register: datos
+
+          - debug: msg="Es un directorio"
+            when: datos.stat.isdir
+          - debug: var=datos
+
+
+

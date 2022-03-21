@@ -1,0 +1,7 @@
+---
+ - name: Modulo comandos
+   hosts: localhost
+   become: True
+   tasks:
+           - name: Uname
+             command: uname -a creates=/tmp/noejecutar
