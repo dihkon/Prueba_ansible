@@ -5,3 +5,7 @@
   - name: Modulo debug
     debug: 
       msg: "Esto es una prueba"
+
+  - name: Otra tarea
+    debug:
+      msg: "Otro mensaje"
