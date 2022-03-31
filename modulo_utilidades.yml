@@ -1,0 +1,7 @@
+---
+- name: Ejemplos modulos utilidades
+  hosts: localhost
+  tasks: 
+  - name: Modulo debug
+    debug: 
+      msg: "Esto es una prueba"
