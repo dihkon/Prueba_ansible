@@ -10,5 +10,11 @@
       win_service:
         name: Tomcat9
         state: stopped
+    
+    - name: Arrancar servicio
+      
+      win_service:
+        name: Tomcat9
+        state: started
 
 
