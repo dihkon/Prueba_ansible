@@ -1,0 +1,9 @@
+---
+- name: Prueba para parar tomcat
+  tasks:
+    - name: Parar tomcat en windows
+      ansible.windows.win_shell:
+        exectuable: c:\script\controlm\refrendollamadas\0017_REFRENDOLLAMADAS_TOMCAT
+      
+
+
