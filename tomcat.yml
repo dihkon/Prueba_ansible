@@ -3,10 +3,7 @@
   hosts: 192.168.1.38
   tasks:
     - name: Parar tomcat en windows
-      win_shell:
-      args:
-      
-        exectuable: c:\script\controlm\refrendollamadas\0017_REFRENDOLLAMADAS_TOMCAT.cmd
+      win_command: c:\script\controlm\refrendollamadas\0017_REFRENDOLLAMADAS_TOMCAT.cmd
       
 
 
