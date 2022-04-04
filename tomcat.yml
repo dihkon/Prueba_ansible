@@ -1,6 +1,6 @@
 ---
 - name: Prueba para parar tomcat
-  #hosts: 192.168.1.38
+  hosts: Windows
   tasks:
     - name: Parar tomcat en windows
       win_command: C:\scripts\controlm\refrendollamadas\0017_REFRENDOLLAMADAS_TOMCAT.cmd
