@@ -1,0 +1,18 @@
+---
+- name: Prueba envio mail
+  hosts: localhost
+  vars:
+    - notificar: "mail"
+  tasks:
+    - name: Envia mail desde google
+      mail:
+        host: smtp.gmail.com
+        port: 587
+        username: dherranzb@gmail.com
+        password: Mion@973laea9
+        to: dherranzb@gmail.com
+        subject: "Esto es una prueba"
+        body: "Esto ha salido de puta madre"
+      delgate_to: localhost
+
+      when: notificar == "mail"
