@@ -12,7 +12,7 @@
         charset: utf-8
         sender: dherranzb@gmail.com
         username: dherranzb
-        password: {{password}}
+        password: "{{password}}"
         to: dherranzb@gmail.com
         subject: "Esto es una prueba"
         body: "Esto ha salido de puta madre"
