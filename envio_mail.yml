@@ -27,7 +27,7 @@
 
     - name: Enviar sms
       pushbullet:
-        api_key: "o.kxmDD4HHFwHLRMmR9xp4nqzdlwaohdaQ"
+        api_key: "api_key"
         device: "android"
-        title: "notificacion"
-       when: notificar == "pushbullet"
+        title: "Ha caido el sistema"
+      when: notificar == "pushbullet"
