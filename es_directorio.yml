@@ -4,7 +4,7 @@
   become: True
   tasks:
           - name: es_directorio
-            stat: path=/home/dherranz/playbooks
+d            stat: path=/home/dherranz/playbooks
             register: datos
 
           - debug: msg="Es un directorio"
