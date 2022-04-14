@@ -1,0 +1,9 @@
+---
+- name: Instalacion en windows de process explorer
+  hosts: ESSEATMASV666
+  tasks:
+          - name: Instala_process_explorer
+            win_chocolatey:
+                    name: "procexp"
+                    state: present
+                               
