@@ -1,6 +1,6 @@
 ---
 - name: Instalacion en windows de process explorer
-  hosts: windows
+  hosts: Windows
   tasks:
           - name: Instala_process_explorer
             win_chocolatey:
