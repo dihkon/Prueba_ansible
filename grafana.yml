@@ -18,29 +18,30 @@
         state:      present
         enabled:    yes
 
+    - block:
+      - name: Start Grafana
+        # Gruadamos la feinicion del servicio en una variable
+        win_service: &start_grafana_service
+          name: "grafana-server"
+          description: "Grafana server"
+          dependencies: [ "Tcpip" ]
+          state: started
+          start_mode: auto
 
-    - name: Find Grafana
-      win_find:
-        patterns: 'grafana-server.exe'
-        paths: 'C:\ProgramData\chocolatey\lib\grafana'
-        recurse: yes
-      register: _
+      rescue:
+      - name: Find Grafana
+        win_find:
+          patterns: 'grafana-server.exe'
+          paths: 'C:\ProgramData\chocolatey\lib\grafana'
+          recurse: yes
+        register: _
 
-    - name: Install NSSM
-      win_chocolatey:
-        name: "nssm"
-        state: present
+      - name: Create Service Grafana
+        win_nssm:
+          name: "grafana-server"
+          application: '{{_.files[0].path}}'
 
-    - name: Create Service for Grafana
-      tags: "service"
-      win_nssm:
-        name: "grafana-server"
-        application: '{{_.files[0].path}}'
+      - name: Start Grafana
+        # Recuperamos la definicion del servicio
+        win_service: *start_grafana_service
 
-    - name: Activate Grafana Service
-      win_service:
-        name: "grafana-server"
-        description: "Grafana server"
-        dependencies: [ "Tcpip"]
-        state: started
-        start_mode: auto
