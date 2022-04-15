@@ -24,7 +24,7 @@
         patterns: 'grafana-server.exe'
         paths: 'C:\ProgramData\chocolatey\lib\grafana'
         recurse: yes
-      reguster: _
+      register: _
 
     - name: Install NSSM
       win_chocolatey:
