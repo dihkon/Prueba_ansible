@@ -39,7 +39,7 @@
 
     - name: Activate Grafana Service
       win_service:
-        name: "grafana_server"
+        name: "grafana-server"
         description: "Grafana server"
         dependencies: [ "Tcpip"]
         state: started
