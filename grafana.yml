@@ -1,0 +1,25 @@
+---
+- name: Instalación Grafana
+  hosts: Windows
+  gather_facts: no
+  tasks:
+    - name: Install_Grafana
+      win_chocolatey:
+        name: "grafana"
+        state: present
+    
+    - name: Configure_Firewall for Grafana
+      win_firewall_rule:
+        name:       "Grafana server"
+        localport:  "3000"
+        action:     allow
+        direction:  in
+        protocol:   tcp
+        state:      present
+        enabled:    yes
+
+    - name: Activate Grafana Service
+      win_service:
+        name: "grafana_servie"
+        state: started
+        start_mode: auto
