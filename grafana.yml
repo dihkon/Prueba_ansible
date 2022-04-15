@@ -39,7 +39,7 @@
       - name: Create Service Grafana
         win_nssm:
           name: "grafana-server"
-          application: '{{_.files[0].path}}'
+          application: '{{ _.files[0].path }}'
 
       - name: Start Grafana
         # Recuperamos la definicion del servicio
