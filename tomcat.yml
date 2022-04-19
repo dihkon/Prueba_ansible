@@ -14,6 +14,9 @@
         state: stopped
        
       tags: [ "parada" ]
+      register: parada
+      debug:
+        msg:  "{{ parada.display_name }} {{ parada.state }}"
     
     - name: Arrancar servicio
       
