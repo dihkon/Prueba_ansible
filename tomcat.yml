@@ -5,51 +5,44 @@
   tasks:
 
     - block:
-
-              - name: Parar tomcat utilizando script vb
-                win_command: C:\scripts\controlm\refrendollamadas\0017_REFRENDOLLAMADAS_TOMCAT.cmd
-                tags: [ "con_script" ]
+      - name: Parar tomcat utilizando script vb
+        win_command: C:\scripts\controlm\refrendollamadas\0017_REFRENDOLLAMADAS_TOMCAT.cmd
+        tags: [ "con_script" ]
       
+      - name: Parar servicio
+        win_service:
+          name: Tomcat9
+          state: stopped
+        tags: [ "parada" ]
+        register: parada
 
-              - name: Parar servicio
+      - name: Output del servicio  
+        debug:
+          msg: "{{ parada.display_name }} {{ parada.state }}"
+        tags: [ "parada" ]
 
-                win_service:
-                  name: Tomcat9
-                  state: stopped
-      
-                tags: [ "parada" ]
+      - name: Arrancar servicio
+        win_service:
+          name: Tomcat9
+          state: started
+        tags: [ "arranque" ]  
+        register: arranque
 
-                register: parada
-    
-              - name: Output del servicio  
-                debug:
-                  msg: "{{ parada.display_name }} {{ parada.state }}"
-                tags: [ "parada" ]
+      - name: Output del servicio
+        debug:
+          msg: "{{ arranque.display_name }} {{ arranque.state }}"
+        tags: [ "arranque" ]
 
+      - name: Envia Correo ok
+        debug:
+          msg: "Correo ok"
 
-              - name: Arrancar servicio
-      
-                win_service:
-                  name: Tomcat9
-                  state: started
-      
-                tags: [ "arranque" ]  
-
-                register: arranque
-
-              - name: Output del servicio
-                debug:
-                  msg: "{{ arranque.display_name }} {{ arranque.state }}"
-                tags: [ "arranque" ]
-
-              - name: Envia Correo ok
-                debug:
-                  msg: "Correo ok"
 
       rescue:
-              - name: Envia corro NO OK
-                debug:
-                  msg: "Correo KO"      
+
+        - name: Envia corro NO OK
+          debug:
+            msg: "Correo KO"      
 
 
     
