@@ -1,0 +1,43 @@
+---
+- name: Prueba para parar tomcat
+  hosts: Windows
+  gather_facts: false
+  tasks:
+
+    - name: Parar tomcat en windows
+      win_command: C:\scripts\controlm\refrendollamadas\0017_REFRENDOLLAMADAS_TOMCAT.cmd
+      tags: [ "con_script" ]
+      
+
+    - name: Parar servicio
+
+      win_service:
+        name: Tomcat9
+        state: stopped
+      
+      tags: [ "parada" ]
+
+      register: parada
+    
+    - name: Output del servicio  
+      debug:
+        msg: "{{ parada.display_name }} {{ parada.state }}"
+      tags: [ "parada" ]
+
+
+    - name: Arrancar servicio
+      
+      win_service:
+        name: Tomcat9
+        state: started
+      
+      tags: [ "arranque" ]  
+
+      register: arranque
+
+    - name: Output del servicio
+      debug:
+        msg: "{{ arranque.display_name }} {{ arranque.state }}"
+      tags: [ "arranque" ]
+
+
