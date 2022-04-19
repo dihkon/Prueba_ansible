@@ -6,14 +6,19 @@
     - name: Parar tomcat en windows
       win_command: C:\scripts\controlm\refrendollamadas\0017_REFRENDOLLAMADAS_TOMCAT.cmd
       tags: [ "con_script" ]
+      
 
     - name: Parar servicio
 
       win_service:
         name: Tomcat9
         state: stopped
-       
+      
       tags: [ "parada" ]
+
+      register: parada
+      debug:
+        msg: "{{ parada.state }}"
     
     - name: Arrancar servicio
       
