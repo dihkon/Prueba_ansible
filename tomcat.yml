@@ -1,30 +1,26 @@
 ---
 - name: Prueba para parar tomcat
   hosts: Windows
-  vars:
-    servicio= "Tomcat"
   tasks:
+
     - name: Parar tomcat en windows
       win_command: C:\scripts\controlm\refrendollamadas\0017_REFRENDOLLAMADAS_TOMCAT.cmd
-      debug: 
-        msg: "Se utiliza el tag"
       tags: [ "con_script" ]
-    
 
     - name: Parar servicio
 
       win_service:
         name: Tomcat9
         state: stopped
-      debug:
-        msg: "Se para el sericio {{ servicio }}"
+       
+      tags: [ "parada" ]
     
     - name: Arrancar servicio
       
       win_service:
         name: Tomcat9
         state: started
-      debug:
-        msg: "Se inicia el servicio {{ servicio }} "
+      
+      tags: [ "arranque" ]  
 
 
