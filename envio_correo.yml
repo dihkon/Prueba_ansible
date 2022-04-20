@@ -1,0 +1,20 @@
+---
+- name: Notificación estatus tras ejecución tasks
+  hosts: Windows
+  gather_facts: false
+  tasks:
+    - name: Envio correo
+      mail:
+        host: smtp.gmail.com
+        port: 587
+        secure: starttls
+        charset:  utf-8
+        sender: dherranzb@gmail.com
+        username: dherranzb
+        password: "{{ password }}"
+        to: dherranzb@gmail.com
+        subject: "Reinicio Refrendo Llamadas"
+        body: "servicio reiniciado"
+      
+      delegate_to: localhost
+     
