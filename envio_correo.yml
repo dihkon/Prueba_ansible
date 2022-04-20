@@ -1,7 +1,7 @@
 ---
-- name: Notificación estatus tras ejecución tasks
+- name: Envio de correos tras comprobar el estatus de la tarea
   hosts: Windows
-  gather_facts: false
+  gather_facts:
   tasks:
     - name: Envio correo
       mail:
