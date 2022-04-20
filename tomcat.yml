@@ -33,15 +33,15 @@
           msg: "{{ arranque.display_name }} {{ arranque.state }}"
         tags: [ "arranque" ]
 
-      #- name: Envia Correo ok
-      - include_task: "envio_correo.yml"
+      - name: Envia Correo ok
+        include: envio_correo.yml
         
 
 
       rescue:
 
-      #- name: Envia correo NO OK
-      - include_task: "envio_correo-yml"
+      - name: Envia correo NO OK
+        include: envio_correo.yml
         
 
     
