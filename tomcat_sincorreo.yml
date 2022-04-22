@@ -4,7 +4,6 @@
   gather_facts: false
   tasks:
 
-    - block:
       - name: Parar tomcat utilizando script vb
         win_command: C:\scripts\controlm\refrendollamadas\0017_REFRENDOLLAMADAS_TOMCAT.cmd
         tags: [ "con_script" ]
@@ -33,42 +32,11 @@
           msg: "{{ arranque.display_name }} {{ arranque.state }}"
         tags: [ "arranque" ]
 
-      - name: Envia Correo ok
-        mail:
-          host: smtp.gmail.com
-          port: 587
-          secure: starttls
-          charset: utf-8
-          sender: dherranzb@gmail.com
-          username: dherranzb
-          password: "{{password}}"
-          to: dherranzb@gmail.com
-          subject: "Reinicio Refrendo Llamadas"
-          body: " Servicio {{ parada.display_name }} ha reiniciado satisfactoriamente"
-
-        delegate_to: localhost
 
         #debug:
         # msg: "Correo ok"
 
 
-      rescue:
-
-      - name: Envia correo NO OK
-          # - name: Envia mail desde google
-        mail:
-          host: smtp.gmail.com
-          port: 587
-          secure: starttls
-          charset: utf-8
-          sender: dherranzb@gmail.com
-          username: dherranzb
-          password: "{{password}}"
-          to: dherranzb@gmail.com
-          subject: "Error: El servicio no ha parado"
-          body: "Error: {{ parada.msg }}"
-
-        delegate_to: localhost
         
         #        debug:
         #   msg: "Correo KO"      
