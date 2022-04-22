@@ -2,6 +2,9 @@
 - name: Prueba para parar tomcat
   hosts: Windows
   gather_facts: false 
+  vars:
+   error: true 
+
   tasks:
 
     - block:
@@ -11,7 +14,7 @@
       
       - name: Parar servicio
         win_service:
-          name: Tomcat9
+          name: Tomcat91
           state: stopped
         tags: [ "parada" ]
         register: parada
@@ -33,17 +36,19 @@
           msg: "{{ arranque.display_name }} {{ arranque.state }}"
         tags: [ "arranque" ]
 
-        # - name: Envia Correo ok
-        #include: envio_correo.yml
-        #debug: msg="Correo Ok"
-      - import_tasks: "envio_correo.yml"
+      - name: Envia Correo ok
+        - include: envio_correo.yml
+        # - debug: msg="Correo Ok"
+        #- import_tasks: "envio_correo.yml"
+        when: error == parada.changed | arranque.changed
 
       rescue:
 
-              # - name: Envia correo NO OK
-        #  include: envio_correo.yml
-        #  debug: msg="Correo KO"
-      - import_tasks: "envio_correo.yml"
+      - name: Envia correo NO OK
+        - include: envio_correo.yml
+        when: error != parada.chanaged | arranque.changed
+              #- debug: msg="Correo KO"
+        #- import_tasks: "envio_correo.yml"
 
         
 

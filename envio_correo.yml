@@ -1,20 +1,36 @@
----
-- name: Envio de correos tras comprobar el estatus de la tarea
-  hosts: Windows
-  gather_facts:
-  tasks:
-    - name: Envio correo
-      mail:
-        host: smtp.gmail.com
-        port: 587
-        secure: starttls
-        charset:  utf-8
-        sender: dherranzb@gmail.com
-        username: dherranzb
-        password: "{{ password }}"
-        to: dherranzb@gmail.com
-        subject: "Reinicio Refrendo Llamadas"
-        body: "servicio reiniciado"
+- vars:
+  error: false
+
+- name: Envio correo ok
+  mail:
+   host: smtp.gmail.com
+   port: 587
+   secure: starttls
+   charset:  utf-8
+   sender: dherranzb@gmail.com
+   username: dherranzb
+   password: "{{ password }}"
+   to: dherranzb@gmail.com
+   subject: "Reinicio Refrendo Llamadas"
+   body: "servicio reiniciado"
       
-      delegate_to: localhost
+  delegate_to: localhost
+  when: error == false
+
+- name: Envio correo KO
+  mail:
+   host: smtp.gmail.com
+   port: 587
+   secure: starttls
+   charset:  utf-8
+   sender: dherranzb@gmail.com
+   username: dherranzb
+   password: "{{ password }}"
+   to: dherranzb@gmail.com
+   subject: "Reinicio Refrendo Llamadas"
+   body: "servicio reiniciado"
+
+  delegate_to: localhost
+  when: error == true
+
      
