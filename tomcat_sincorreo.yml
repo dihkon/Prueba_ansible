@@ -10,7 +10,7 @@
       
       - name: Parar servicio
         win_service:
-          name: Tomcat9
+          name: "{{ item }}"
           state: stopped
         tags: [ "parada" ]
         register: parada
@@ -22,7 +22,7 @@
 
       - name: Arrancar servicio
         win_service:
-          name: Tomcat9
+          name: "{{ item }}"
           state: started
         tags: [ "arranque" ]  
         register: arranque
